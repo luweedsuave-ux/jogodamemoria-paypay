@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#405b26" />
+  <title>Pay-Pay</title>
+  <link rel="stylesheet" href="Style.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="game-panel" aria-label="Jogo da memória Pay-Pay">
+      <header class="brand-header">
+        <img src="./Assets/paypay-top-logo.png" alt="Pay-Pay" class="brand-logo" />
+      </header>
+
+      <div class="round-message" id="round-message" aria-live="polite">
+        <strong>Memorize as cartas</strong>
+        <span id="preview-countdown">5</span>
+      </div>
+
+      <div class="stats-container" aria-live="polite">
+        <div id="time"><span class="stat-label">Tempo restante:</span><strong class="stat-value">15</strong></div>
+        <div id="pairs-count"><span class="stat-label">Pares encontrados:</span><strong class="stat-value">0/6</strong></div>
+      </div>
+
+      <div class="board-area" id="board-area">
+        <div class="game-container" id="game-container"></div>
+      </div>
+
+      <div class="action-row">
+        <button id="restart" class="secondary-button" type="button">Nova rodada</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
