@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#405b26" />
+  <title>Pay-Pay</title>
+  <link rel="stylesheet" href="Style.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="game-panel" aria-label="Jogo da memória Pay-Pay">
+      <header class="brand-header">
+        <img src="./Assets/paypay-top-logo.png" alt="Pay-Pay" class="brand-logo" />
+      </header>
+
+      <div class="round-message" id="round-message" aria-live="polite">
+        <strong>Memorize as cartas</strong>
+        <span id="preview-countdown">3</span>
+      </div>
+
+      <div class="stats-container" aria-live="polite">
+        <div id="time"><span class="stat-label">Tempo restante:</span><strong class="stat-value">00:15.000</strong></div>
+        <div id="pairs-count"><span class="stat-label">Pares encontrados:</span><strong class="stat-value">0/6</strong></div>
+      </div>
+
+      <div class="board-area" id="board-area">
+        <div class="game-container" id="game-container"></div>
+      </div>
+
+      <div class="action-row">
+        <button id="restart" class="secondary-button" type="button">Nova rodada</button>
+      </div>
+    </section>
+
+    <section class="game-overlay" id="start-overlay" aria-labelledby="start-title">
+      <div class="overlay-card start-card">
+        <img src="./Assets/paypay-top-logo.png" alt="Pay-Pay" class="overlay-logo" />
+        <h1 id="start-title">Jogo da Memória</h1>
+        <p>Memorize as cartas por 3 segundos e encontre os 6 pares em até 15 segundos.</p>
+        <button id="start-game" class="primary-button" type="button">Iniciar jogo</button>
+      </div>
+    </section>
+
+    <section class="game-overlay hide" id="result-overlay" aria-labelledby="result-title" aria-live="polite">
+      <div class="overlay-card result-card-v10">
+        <img src="./Assets/paypay-top-logo.png" alt="Pay-Pay" class="overlay-logo result-overlay-logo" />
+        <h1 id="result-title">Resultado</h1>
+        <p id="result-text">Você acertou 0 pares.</p>
+
+        <form id="score-form" class="score-form hide" autocomplete="off">
+          <label>Você entrou no Top 10! Digite seu nome:</label>
+          <div id="player-name" class="player-name-display" role="textbox" aria-label="Nome do jogador" aria-readonly="true">
+            <span id="player-name-text" class="player-name-placeholder">SEU NOME</span>
+            <span id="player-name-count">0/10</span>
+          </div>
+
+          <div class="virtual-keyboard" id="virtual-keyboard" aria-label="Teclado virtual">
+            <div class="keyboard-row">
+              <button type="button" class="key-button" data-key="Q">Q</button>
+              <button type="button" class="key-button" data-key="W">W</button>
+              <button type="button" class="key-button" data-key="E">E</button>
+              <button type="button" class="key-button" data-key="R">R</button>
+              <button type="button" class="key-button" data-key="T">T</button>
+              <button type="button" class="key-button" data-key="Y">Y</button>
+              <button type="button" class="key-button" data-key="U">U</button>
+              <button type="button" class="key-button" data-key="I">I</button>
+              <button type="button" class="key-button" data-key="O">O</button>
+              <button type="button" class="key-button" data-key="P">P</button>
+            </div>
+            <div class="keyboard-row keyboard-row-middle">
+              <button type="button" class="key-button" data-key="A">A</button>
+              <button type="button" class="key-button" data-key="S">S</button>
+              <button type="button" class="key-button" data-key="D">D</button>
+              <button type="button" class="key-button" data-key="F">F</button>
+              <button type="button" class="key-button" data-key="G">G</button>
+              <button type="button" class="key-button" data-key="H">H</button>
+              <button type="button" class="key-button" data-key="J">J</button>
+              <button type="button" class="key-button" data-key="K">K</button>
+              <button type="button" class="key-button" data-key="L">L</button>
+              <button type="button" class="key-button" data-key="Ç">Ç</button>
+            </div>
+            <div class="keyboard-row keyboard-row-bottom">
+              <button type="button" class="key-button" data-key="Z">Z</button>
+              <button type="button" class="key-button" data-key="X">X</button>
+              <button type="button" class="key-button" data-key="C">C</button>
+              <button type="button" class="key-button" data-key="V">V</button>
+              <button type="button" class="key-button" data-key="B">B</button>
+              <button type="button" class="key-button" data-key="N">N</button>
+              <button type="button" class="key-button" data-key="M">M</button>
+              <button type="button" class="key-button key-action" data-action="backspace" aria-label="Apagar">⌫</button>
+            </div>
+            <div class="keyboard-row keyboard-actions">
+              <button type="button" class="key-button space-key" data-action="space">ESPAÇO</button>
+              <button type="submit" class="save-score-button">CONFIRMAR</button>
+            </div>
+          </div>
+        </form>
+
+        <section class="highscores" aria-labelledby="highscores-title">
+          <h2 id="highscores-title">Highscores</h2>
+          <div class="highscores-table-wrap">
+            <table class="highscores-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nome</th>
+                  <th>Tempo</th>
+                </tr>
+              </thead>
+              <tbody id="highscores-body"></tbody>
+            </table>
+          </div>
+          <p id="empty-highscores" class="empty-highscores hide">Ainda não há tempos registrados.</p>
+        </section>
+
+        <button id="play-again" class="primary-button play-again-button" type="button">Jogar novamente</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
